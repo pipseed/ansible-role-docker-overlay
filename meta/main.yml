@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: ansible-role-docker-overlay
+  author: Andy Seed
+  description: Docker Engine Overlay
+  company: ams1.info
+  license: GPLv3
+  min_ansible_version: 2.9
+  platforms:
+  - name: Ubuntu
+    versions:
+      - bionic
+
+  galaxy_tags:
+    - ubuntu
+    - automation
+    - security
+    - hardening
+
+  dependencies: []

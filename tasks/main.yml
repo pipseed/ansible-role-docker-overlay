@@ -1,0 +1,15 @@
+---
+# Tasks file for ansible-role-docker-overlay
+#  - include: debug.yml
+
+ - include: install.yml
+
+ - include: pre-security.yml
+
+ - include: section1.yml
+
+ - include: section2.yml
+
+ - include: section3.yml
+
+ - include: post-build.yml

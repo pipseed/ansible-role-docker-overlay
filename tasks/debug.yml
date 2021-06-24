@@ -1,0 +1,4 @@
+---
+ - name: List some facts
+   debug: 
+     msg: "{{ ansible_virtualization_type }}"

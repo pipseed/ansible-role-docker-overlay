@@ -1,0 +1,160 @@
+---
+# Hardening section for Docker on Ubuntu 18.04
+- name: "| 1.1.1 | Ensure the container host has been Hardened | Not Scored"
+  command: "/bin/true"
+  changed_when: no
+  tags:
+    - level1_host
+    - not_scored
+    - rule_1.1.1
+    - manual_check
+
+- name: "| 1.1.2 | Ensure Docker is up to date | Not Scored"
+  command: "/bin/true"
+  changed_when: no
+  tags:
+    - level1_host
+    - not_scored
+    - rule_1.1.2
+    - manual_check
+
+- name: "| 1.2.1 | Ensure a separate partition for containers has been created | Scored"
+  command: "grep /var/lib/docker /etc/fstab"
+  changed_when: no
+  ignore_errors: yes
+  when: cis_rule_1_2_1
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.1
+    - manual_check
+
+- name: "| 1.2.2 | Ensure only trusted users are allowed to control Docker daemon | Scored"
+  command: "/bin/true"
+  changed_when: no
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.2
+    - manual_check
+
+- name: "| 1.2.3 | Ensure auditing is configured for the docker daemon | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /usr/bin/dockerd -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.3
+
+- name: "| 1.2.4 | Ensure auditing is configured for Docker files and directories - /var/lib/docker | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /var/lib/docker -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.4
+
+- name: "| 1.2.5 | Ensure auditing is configured for Docker files and directories - /etc/docker | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /etc/docker -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.5
+
+- name: "| 1.2.6 | Ensure auditing is configured for Docker files and directories - docker.service | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /lib/systemd/system/docker.service -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.6
+
+- name: "| 1.2.7 | Ensure auditing is configured for Docker files and directories - docker.socket | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /lib/systemd/system/docker.socket -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.7
+
+- name: "| 1.2.8 | Ensure auditing is configured for Docker files and directories - /etc/default/docker | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /etc/default/docker -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.8
+
+- name: "| 1.2.9 | Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /etc/sysconfig/docker -k docker"
+  notify: load audit rules
+  when: ansible_distribution == 'OracleLinux'
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.9
+
+- name: "| 1.2.10 | Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /etc/docker/daemon.json -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.10
+
+- name: "| 1.2.11 | Ensure auditing is configured for Docker files and directories - /usr/bin/containerd | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /usr/bin/containerd -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.11
+
+- name: "| 1.2.12 | Ensure auditing is configured for Docker files and directories - /usr/bin/runc | Scored"
+  lineinfile:
+    state: present
+    create: yes
+    dest: "{{ auditd_config_file[ansible_os_family] }}"
+    line: "-w /usr/bin/runc -k docker"
+  notify: load audit rules
+  tags:
+    - level1_host
+    - scored
+    - rule_1.2.12

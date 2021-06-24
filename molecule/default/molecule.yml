@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+platforms:
+  - name: ubuntu
+    image: pipseed/ansible-molecule:18.04 
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+
+provisioner:
+  name: ansible
+  config_options:
+    ssh_connection:
+      pipelining: False
+
+verifier:
+  name: ansible

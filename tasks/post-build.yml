@@ -1,0 +1,7 @@
+---
+# Post Build section
+- name: Reboot the Host to apply the hardening.
+  reboot:
+  when: 
+    - hardening.changed
+    - ansible_virtualization_type != "docker"

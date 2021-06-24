@@ -1,0 +1,91 @@
+---
+# Install section for installing and configuring Docker.
+ - name: Create the log directory
+   file: 
+     path: /var/log/docker
+     state: directory
+     mode: '0755'
+
+ - name: Import the Docker-ce GPG Signing key
+   apt_key:
+     url: "https://download.docker.com/linux/ubuntu/gpg"
+     state: present
+     validate_certs: false
+
+ - name: Add the Docker-ce repository
+   apt_repository:
+     repo: deb https://download.docker.com/linux/ubuntu {{ ubuntu_release }} stable
+     state: present
+     update_cache: yes
+
+ - name: Install Docker-ce
+   apt:
+     pkg: 
+       - docker-ce 
+       - docker-ce-cli
+       - containerd.io
+     state: present
+   tags:
+     - packages
+
+ - name: Start the docker service 
+   service:
+     name: docker
+     state: started
+
+ - name: Add the "{{ docker_user }}" to the Docker Group
+   user:
+     name: "{{ docker_user }}"
+     group: docker
+
+ - name: Install docker-bench-security
+   template:
+     src: docker-bench-security.sh.j2
+     dest: /usr/local/bin/docker-bench-security.sh
+     mode: '0755'
+     owner: root
+     group: root
+
+ - name: Create the docker systemd directory
+   file:
+     path: /etc/systemd/system/docker.service.d
+     state: directory
+     mode: '0755'
+     owner: root
+     group: root
+
+ - name: Install docker http-proxy configuration
+   template:
+     src: http-proxy.conf.j2
+     dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+     mode: '0644'
+     owner: root
+     group: root
+
+ - name: Install docker-compose
+   get_url:
+     url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 
+     dest: /usr/local/bin/docker-compose
+     mode: '0755'
+     owner: root
+     group: root
+
+ - name: Check the Grub file exists
+   stat:
+     path: /etc/default/grub
+   register: grub_file  
+
+ - name: Fix the docker Kernel swap issue
+   lineinfile:
+     dest: /etc/default/grub
+     regexp: 'GRUB_CMDLINE_LINUX="(.*)"'
+     line: 'GRUB_CMDLINE_LINUX_DEFAULT="\1 cgroup_enable=memory swapaccount=1"'
+     backrefs: yes
+   register: kernel_swap
+   when: grub_file.stat.exists
+   notify:
+     - Update Grub2 Ubuntu
+
+ - name: Reboot the Host before applying the security
+   reboot:
+   when: kernel_swap.changed

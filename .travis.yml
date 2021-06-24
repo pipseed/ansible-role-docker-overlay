@@ -6,4 +6,4 @@ services:
 
 env:
  - distribution: ubuntu
-    version: bionic
+     version: bionic

@@ -1,7 +1,8 @@
 
 Role Name
 =========
-Docker Engine Overlay Ansible role for Ubuntu 18.04 
+
+Docker Engine Overlay Ansible role for Ubuntu 18.04
 
 Requirements
 ------------
@@ -16,7 +17,7 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles..
 
 Example Playbook
 ----------------

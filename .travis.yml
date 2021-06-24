@@ -1,8 +1,13 @@
 ---
   language: ruby
 
+  os:
+    - linux
+
   services: 
     - docker
+
+  dist: bionic
 
   before_install:
     - docker pull pipseed/ansible-molecule:18.04

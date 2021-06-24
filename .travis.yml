@@ -1,9 +1,7 @@
 ---
-sudo: required
+  language: ruby
+  dist: bionic
 
-services:
-  - docker
-
-env:
- - distribution: ubuntu
-     version: bionic
+  sudo: true,
+  services: 
+    - docker

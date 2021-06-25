@@ -2,11 +2,7 @@
 - name: Converge
   hosts: all
   become: yes
-  roles:
-    - role: ansible-role-docker-overlay
-
-  post_tasks:
-    - name: Start the Docker daemon 
-      service:
-        name: docker
-        state: started
+  tasks:
+    - name: Install ansible-role-docker-overlay
+      include_role:
+        name: ansible-role-docker-overlay

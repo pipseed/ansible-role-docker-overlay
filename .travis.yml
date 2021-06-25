@@ -11,3 +11,6 @@
 
   before_install:
     - docker pull pipseed/ansible-molecule:18.04
+
+  script:
+    - ansible-playbook tests/test.yml -i test/inventory --syntax-check

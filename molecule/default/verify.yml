@@ -6,5 +6,11 @@
   gather_facts: false
   tasks:
   - name: Check Docker Status
-    docker_host_info: 
-    register: result
+    service: 
+      name: docker
+      state: started
+
+  - name: Pull a test container
+    docker_image:
+      name: pipseed/docker-bench-security:latest
+      source: pull

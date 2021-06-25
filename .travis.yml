@@ -1,14 +1,21 @@
 ---
+  language: python
+  python: "3.6"
   os:
     - linux
+
+  dist: bionic
 
   services: 
     - docker
 
-  dist: bionic
-
   before_install:
     - docker pull pipseed/ansible-molecule:18.04
+
+  install: 
+    - pip install ansible
+    - ansible --version
+    - printf '[defaults]\nroles_path=../' >ansible.cfg
 
   script:
     - ansible-playbook tests/test.yml -i test/inventory --syntax-check

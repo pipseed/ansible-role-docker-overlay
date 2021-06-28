@@ -2,17 +2,31 @@
 Role Name
 =========
 
-Docker Engine Overlay Ansible role for Ubuntu 18.04
+Docker Engine Overlay Ansible role for bionic (Ubuntu 18.04)
+
+Description
+-----------
+
+This role will install docker-ce or docker-ee 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This build requires an Ubuntu 18.04 build with access to Canonical's apt repositories.
+Future releases will also include Focal (20.04)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+This section cover the variables required for use within this role:
+
+| Variable | Example | Description |
+| -------- | ------- | ----------- |
+| docker_user | user1 | The name of the user that you will be using. |  
+| ubuntu_release | bionic | Default to bionic (18.04). |
+| env_http_proxy | proxy.com:8080  | Set if a proxy is required. |
+| env_https_proxy | proxy.com:8080 | set if a https proxy is required. |
+| docker_registry | registry.com | Set if not using hub.docker.com |
 
 Dependencies
 ------------
@@ -36,4 +50,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Andy Seed (pipseed@gmail.com)

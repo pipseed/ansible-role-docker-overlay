@@ -6,13 +6,14 @@ Docker Engine Overlay Ansible role for bionic (Ubuntu 18.04)
 
 Description
 -----------
+This role will install docker-ce or docker-ee. This role also includes CIS hardening. 
+The CIS Bencmark used for this release is covered in the [version.txt](verison.txt) 
 
-This role will install docker-ce or docker-ee 
 
 Requirements
 ------------
 
-This build requires an Ubuntu 18.04 build with access to Canonical's apt repositories.
+This build requires an Ubuntu 18.04 build with access to Canonical's apt repositories.  
 Future releases will also include Focal (20.04)
 
 Role Variables

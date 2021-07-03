@@ -15,7 +15,8 @@ Requirements
 ------------
 
 This build requires an Ubuntu 18.04 build with access to Canonical's apt repositories.  
-Future releases will also include Focal (20.04)
+Future releases will also include Focal (20.04).  
+This may extend to RedHat derived builds.   
 
 Role Variables
 --------------

@@ -1,7 +1,7 @@
 @Library(‘badge-update-library’) _
 inventory_cmd=‘’’cat > requirements/docker.yml << EOF
 - name: Docker-Engine-Overlay
-  src: git+http://github.com/pipseed/ansible-role-docker-overlay.git
+  src: git+https://github.com/pipseed/ansible-role-docker-overlay.git
   version: master
 EOF’’’
 playbook_cmd=‘’’cat > docker-overlay.yml << EOF
@@ -16,7 +16,7 @@ def ncDocker = null
 pipeline {
     agent { label ‘ansible-master’ }
     parameters {
-                string(name: ‘site’, defaultValue:  ‘http://github.com/pipseed/ansible/compute/sites/adastral-test.git’ , description: ‘IaC inventory’)
+                string(name: ‘site’, defaultValue:  ‘https://github.com/pipseed/ansible/compute/sites/adastral-test.git’ , description: ‘IaC inventory’)
                 string(name: ‘chosen_host’, defaultValue:  ‘dev-kvm-04’ , description: ‘Which host to deploy to’)
     }
     options {

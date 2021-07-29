@@ -2,6 +2,7 @@ pipeline {
     agent { label 'ansible-master' }
     parameters {
       string(name: 'chosen_host', defaultValue:  'dev-kvm-10' ,description: 'Application Repository name from git')
+      string(name: 'site', defaultValue:  'http://github.ams1.info/ansible/compute/sites/jenkins.git' ,description: 'My-Test Site')
     }
  
     stages {

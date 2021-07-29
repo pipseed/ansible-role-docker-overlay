@@ -8,7 +8,7 @@ pipeline {
     stages {
       stage('fetch roles') {
         steps {
-          sh "ansible-galaxy install -p roles -r example/docker-overlay.yml"
+          sh "ansible-galaxy install -p roles -r provision/docker-overlay.yml"
         }
       }
       

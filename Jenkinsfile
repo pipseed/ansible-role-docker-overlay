@@ -15,10 +15,10 @@ pipeline {
       stage('playbook') {
         steps {
           ansiblePlaybook colorized: true, 
+          extras: 'chosen_host=$chosen_host, docker_user=seeda',
           installation: 'ansible',
           inventory: 'provision/hosts', 
-          playbook: 'provision/docker.yml',
-          extras: 'chosen_host=$chosen_host, docker_user=seeda'
+          playbook: 'provision/docker.yml'
         }
       }
    }

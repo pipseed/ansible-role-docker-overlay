@@ -12,21 +12,7 @@ pipeline {
     stages {
             stage(‘inventory’) {
                 steps {
-                    updateGitlabCommitStatus name: ‘build’, state: ‘pending’
-                    updateBadge(“gitlab”)
-                    deleteDir()
-                    script{
-                        def scm = git(branch: ‘master’, credentialsId: ‘gitlab’, url: params.site)
-                        def workspace = pwd() //this is better approach to get working directory rather than env.workspace when running on nodes
-                    }
-                    configFileProvider(
-                        [configFile(fileId: ‘git-credential-helper.sh’, targetLocation: ‘git-credential-helper.sh’),
-                         configFile(fileId: ‘ansible_security_tokens’, targetLocation: ‘security_keys.json’)]) {
-                    }
-                    sh “git config —global credential.helper \”/bin/bash ${workspace}/git-credential-helper.sh\””
                 }
-               
-            }
             stage(‘fetch roles’) {
                 steps {
                         withCredentials([[

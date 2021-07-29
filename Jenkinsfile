@@ -10,7 +10,6 @@ pipeline {
       
       stage(‘playbook’) {
         steps {
-          sh ‘ls -alrt roles/‘
           sh ‘ansible-playbook example/docker-overlay.yml —extra-vars “chosen_hosts=$chosen_host, docker_user=”seeda’
         }
       }

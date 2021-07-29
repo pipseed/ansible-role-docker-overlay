@@ -13,7 +13,7 @@ pipeline {
       
       stage(‘playbook’) {
         steps {
-          sh "ansible-playbook example/docker.yml —extra-vars 'chosen_hosts=$chosen_host, docker_user=seeda"
+          sh 'ansible-playbook example/docker.yml —extra-vars "chosen_hosts=$chosen_host, docker_user=seeda"'
         }
       }
    }

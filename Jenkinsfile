@@ -18,7 +18,7 @@ pipeline {
           installation: 'ansible',
           inventory: 'provision/hosts', 
           playbook: 'provision/docker.yml',
-          extras: 'chosen_hosts=$chosen_hosts, docker_user=seeda'
+          extras: 'chosen_host=$chosen_host, docker_user=seeda'
         }
       }
    }

@@ -1,5 +1,5 @@
 pipeline {
-    agent { label ‘ansible-master’ }
+    agent { label 'ansible-master' }
     parameters {
       string(name: 'chosen_host', defaultValue:  'dev-kvm-10' ,description: 'Application Repository name from git')
     }

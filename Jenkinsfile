@@ -14,6 +14,8 @@ pipeline {
       
       stage('playbook') {
         steps {
+          sh "pwd"
+					sh "tree"
           ansiblePlaybook colorized: true, 
           extras: '-e "chosen_host=$chosen_host, docker_user=seeda"',
           installation: 'ansible',

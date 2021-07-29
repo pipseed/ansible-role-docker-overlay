@@ -1,9 +1,6 @@
 pipeline {
     agent { label ‘ansible-master’ }
-    parameters {
-                string(name: ‘site’, defaultValue:  ‘https://github.com/pipseed/ansible/compute/sites/adastral-test.git’ , description: ‘IaC inventory’)
-                string(name: ‘chosen_host’, defaultValue:  ‘dev-kvm-04’ , description: ‘Which host to deploy to’)
-    }
+    
     options {
       gitLabConnection(‘github.com’)
     }

@@ -1,18 +1,3 @@
-@Library(‘badge-update-library’) _
-inventory_cmd=‘’’cat > requirements/docker.yml << EOF
-- name: Docker-Engine-Overlay
-  src: git+https://github.com/pipseed/ansible-role-docker-overlay.git
-  version: master
-EOF’’’
-playbook_cmd=‘’’cat > docker-overlay.yml << EOF
-—
-- hosts: “{{ chosen_hosts | default(‘none’) }}”
-  become: yes
-  become_method: sudo
-  roles:
-   - Docker-Engine-Overlay
-EOF’’’
-def ncDocker = null
 pipeline {
     agent { label ‘ansible-master’ }
     parameters {

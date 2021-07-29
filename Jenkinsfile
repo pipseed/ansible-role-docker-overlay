@@ -14,7 +14,12 @@ pipeline {
       
       stage('playbook') {
         steps {
-          sh "ansible-playbook example/docker.yml --extra-vars 'chosen_hosts=$chosen_host, docker_user=seeda'"
+          ansiblePlaybook colorized: true, 
+          installation: 'ansible',
+          inventory: 'provision/hosts', 
+          playbook: 'provision/docker.yml',
+          extras: 'chosen_hosts=$chosen_hosts, docker_user=seeda'
+#          sh "ansible-playbook example/docker.yml --extra-vars 'chosen_hosts=$chosen_host, docker_user=seeda'"
         }
       }
    }

@@ -15,7 +15,7 @@ pipeline {
       stage('playbook') {
         steps {
           ansiblePlaybook colorized: true, 
-          extras: 'chosen_host=$chosen_host, docker_user=seeda',
+          extras: '-e "chosen_host=$chosen_host, docker_user=seeda"',
           installation: 'ansible',
           inventory: 'provision/hosts', 
           playbook: 'provision/docker.yml'

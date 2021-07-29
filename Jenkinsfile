@@ -1,5 +1,9 @@
 pipeline {
     agent { label ‘ansible-master’ }
+    triggers {
+      githubPush()
+    }
+      
     
     options {
       gitLabConnection(‘github.com’)

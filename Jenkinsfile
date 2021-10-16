@@ -23,10 +23,10 @@ pipeline {
           playbook: 'provision/docker.yml'
         }
       }
-      post {
-        always {
-          deleteDir()
-        }
-      }
+   }
+   post {
+     always {
+        deleteDir()
+     }
    }
 }

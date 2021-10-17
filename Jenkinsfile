@@ -25,7 +25,7 @@ pipeline {
       }
       stage('Validate') {
         steps {
-          sh "molecule test"
+          sh "/home/auto-test/.local/bin/molecule test"
         }
       }
    }

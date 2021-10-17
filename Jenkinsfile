@@ -23,6 +23,11 @@ pipeline {
           playbook: 'provision/docker.yml'
         }
       }
+      stage('Validate') {
+        steps {
+          sh "molecule test"
+        }
+      }
    }
    post {
      always {

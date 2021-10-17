@@ -29,12 +29,12 @@ pipeline {
         }
       }
    }
-   post {
-     always {
-        deleteDir()
-        dir("${env.WORKSPACE}@tmp") {
-            deleteDir()
-        }
-     }
-   }
+#   post {
+#     always {
+#        deleteDir()
+#        dir("${env.WORKSPACE}@tmp") {
+#            deleteDir()
+#        }
+#     }
+#   }
 }

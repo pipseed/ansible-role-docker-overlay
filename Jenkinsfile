@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'ansible-master' }
+    environment {
+          PATH=/home/auto-test/.local/bin:${env.PATH}
+    }
     parameters {
       string(name: 'chosen_hosts', defaultValue:  'dev-kvm-10' ,description: 'Application Repository name from git')
       string(name: 'site', defaultValue:  'http://github.ams1.info/ansible/compute/sites/jenkins.git' ,description: 'My-Test Site')
@@ -8,7 +11,6 @@ pipeline {
     stages {
       stage('Fetch Roles') {
         steps {
-          sh "export PATH=home/auto-test/.local/bin:$PATH"
           sh "ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml"
         }
       }

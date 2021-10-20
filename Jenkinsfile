@@ -8,7 +8,8 @@ pipeline {
     stages {
       stage('Fetch Roles') {
         steps {
-          sh "source /home/auto-test/.bashrc"
+          sh "id"
+          sh "source ./home/auto-test/.bashrc"
           sh "ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml"
         }
       }

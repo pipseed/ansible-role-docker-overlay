@@ -19,11 +19,12 @@ pipeline {
         steps {
           sh "pwd"
 					sh "tree"
-          ansiblePlaybook colorized: true, 
-          extras: '-e "chosen_hosts=$chosen_hosts, docker_user=seeda"',
-          installation: 'ansible',
-          inventory: 'provision/hosts', 
-          playbook: 'provision/docker.yml'
+          sh "ansible-playbook provision/docker.yml -i provision/hosts -e "chosen_hosts=$chosen_hosts, docker_user=seeda""
+          #ansiblePlaybook colorized: true, 
+          #extras: '-e "chosen_hosts=$chosen_hosts, docker_user=seeda"',
+          #installation: 'ansible',
+          #inventory: 'provision/hosts', 
+          #playbook: 'provision/docker.yml'
         }
       }
       stage('Validate') {

@@ -19,14 +19,14 @@ pipeline {
 					sh "tree"
           ansiblePlaybook colorized: true, 
           extras: '-e "chosen_hosts=$chosen_hosts, docker_user=seeda"',
-          installation: 'ansible',
+          installation: '/home/auto-test/.local/bin/ansible',
           inventory: 'provision/hosts', 
           playbook: 'provision/docker.yml'
         }
       }
       stage('Validate') {
         steps {
-          sh "molecule test"
+          sh "/home/auto-test/.local/bin/molecule test"
         }
       }
    }

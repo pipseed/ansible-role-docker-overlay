@@ -8,8 +8,8 @@ pipeline {
     stages {
       stage('Fetch Roles') {
         steps {
-          sh "id"
-          sh "/home/auto-test/.local/bin/ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml"
+          sh "export PATH=home/auto-test/.local/bin:$PATH"
+          sh "ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml"
         }
       }
       
@@ -19,14 +19,14 @@ pipeline {
 					sh "tree"
           ansiblePlaybook colorized: true, 
           extras: '-e "chosen_hosts=$chosen_hosts, docker_user=seeda"',
-          installation: '/home/auto-test/.local/bin/ansible',
+          installation: 'ansible',
           inventory: 'provision/hosts', 
           playbook: 'provision/docker.yml'
         }
       }
       stage('Validate') {
         steps {
-          sh "/home/auto-test/.local/bin/molecule test"
+          sh "molecule test"
         }
       }
    }

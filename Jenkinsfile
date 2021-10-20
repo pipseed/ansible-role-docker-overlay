@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'ansible-master' }
     environment {
-          PATH=/home/auto-test/.local/bin:${env.PATH}
+          PATH="/home/auto-test/.local/bin:${env.PATH}"
     }
     parameters {
       string(name: 'chosen_hosts', defaultValue:  'dev-kvm-10' ,description: 'Application Repository name from git')

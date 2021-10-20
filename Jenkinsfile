@@ -17,16 +17,21 @@ pipeline {
       
       stage('Run Playbook') {
         steps {
-          sh "pwd"
-					sh "tree"
           sh "ansible-playbook provision/docker.yml -i provision/hosts -e 'chosen_hosts=$chosen_hosts, docker_user=seeda'"
         }
       }
-      stage('Validate') {
+      stage('Molecule Validation') {
         steps {
           sh "molecule test"
         }
       }
    }
- 
+   post {
+     always {
+        deleteDir()
+        dir("${env.WORKSPACE}@tmp") {
+            deleteDir()
+        }
+     }
+   } 
 }

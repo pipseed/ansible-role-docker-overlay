@@ -15,7 +15,6 @@ pipeline {
     )
     }
     environment {
-    environment {
           PATH="/home/auto-test/.local/bin:${env.PATH}"
     }
  

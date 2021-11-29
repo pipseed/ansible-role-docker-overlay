@@ -25,7 +25,7 @@ pipeline {
       
       stage('Run Playbook') {
         steps {
-          sh "ansible-playbook provision/docker.yml -i provision/hosts -e 'chosen_hosts=$chosen_hosts, docker_user=seeda'"
+          sh "ansible-playbook provision/docker.yml -i provision/hosts -e 'chosen_hosts=$Host, docker_user=seeda'"
         }
       }
       stage('Molecule Validation') {

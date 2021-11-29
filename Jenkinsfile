@@ -4,7 +4,7 @@ pipeline {
     choice(
       name: 'Host',
       choices: ['dev-kvm-10', 'dev-kvm-09', 'dev-kvm-08', 'dev-kvm-07'],
-      description: 'Application Repository name from git'
+      description: 'Application Repository name from git\nTesting\ntest'
     )
     choice(
       name: 'Site',

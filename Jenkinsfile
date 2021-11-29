@@ -1,11 +1,22 @@
 pipeline {
     agent { label 'ansible-master' }
-    environment {
-          PATH="/home/auto-test/.local/bin:${env.PATH}"
+    parameters {
+    choice(
+      name: 'Host',
+      choices: ['dev-kvm-01', 'dev-kvm-02', 'dev-kvm-03', 'dev-kvm-04'],
+      description: 'Application Repository name from git'
+    )
     }
     parameters {
-      string(name: 'chosen_hosts', defaultValue:  'dev-kvm-10' ,description: 'Application Repository name from git')
-      string(name: 'site', defaultValue:  'http://github.ams1.info/ansible/compute/sites/jenkins.git' ,description: 'My-Test Site')
+    choice(
+      name: 'Site',
+      choices: ['dev', 'test', 'prod'],
+      description: 'Environment'
+    )
+    }
+    environment {
+    environment {
+          PATH="/home/auto-test/.local/bin:${env.PATH}"
     }
  
     stages {

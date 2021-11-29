@@ -6,8 +6,6 @@ pipeline {
       choices: ['dev-kvm-01', 'dev-kvm-02', 'dev-kvm-03', 'dev-kvm-04'],
       description: 'Application Repository name from git'
     )
-    }
-    parameters {
     choice(
       name: 'Site',
       choices: ['dev', 'test', 'prod'],

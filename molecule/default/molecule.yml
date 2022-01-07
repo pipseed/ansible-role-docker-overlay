@@ -24,7 +24,7 @@ provisioner:
     name: ansible-lint
   config_options:
     defaults:
-      deprecation_warnings: False
+      deprecation_warnings: false
     ssh_connection:
       pipelining: True
 

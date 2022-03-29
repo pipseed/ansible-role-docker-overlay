@@ -11,7 +11,7 @@ lint: |
 
 platforms:
   - name: ubuntu
-    image: pipseed/ansible-molecule:18.04 
+    image: pipseed/docker-bionic-ansible:latest
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro

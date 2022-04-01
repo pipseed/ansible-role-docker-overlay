@@ -1,5 +1,5 @@
 ---
-# Tasks file for ansible-role-docker-overlay
+# Tasks file for ansible-role-docker-overlay.
 #  - include: debug.yml
 
  - include: install.yml

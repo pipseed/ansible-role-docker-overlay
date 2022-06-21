@@ -6,13 +6,13 @@ pipeline {
     }
  
     stages {
-      stage('fetch roles') {
+      stage('Fetch Roles') {
         steps {
           sh "ansible-galaxy install -p roles -r provision/docker-overlay.yml"
         }
       }
       
-      stage('playbook') {
+      stage('Run Playbook') {
         steps {
           sh "pwd"
 					sh "tree"
@@ -23,5 +23,10 @@ pipeline {
           playbook: 'provision/docker.yml'
         }
       }
+	  stage('Complete-build') {
+	    steps {
+		
+	    }
+	  }
    }
 }

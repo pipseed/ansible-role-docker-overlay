@@ -1,5 +1,6 @@
 galaxy_info:
-  role_name: ansible-role-docker-overlay
+  role_name: docker_overlay
+  namespace: docker_overlay
   author: Andy Seed
   description: Docker Engine Overlay
   company: ams1.info

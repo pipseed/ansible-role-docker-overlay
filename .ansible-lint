@@ -6,5 +6,3 @@ skip_list:
   - 'ignore-errors'
   - 'no-handler'
   - '403'
-
-

@@ -10,7 +10,7 @@ lint: |
   ansible-lint
 
 platforms:
-  - name: ubuntu
+  - name: bionic-docker-vm
     image: pipseed/docker-bionic-ansible:latest
     command: ""
     volumes:

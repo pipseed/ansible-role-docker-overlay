@@ -10,7 +10,7 @@ lint: |
   ansible-lint
 
 platforms:
-  - name: ${MOLECULE_DISTRO:-bionic}-docker-vm
+  - name: Ubuntu-docker-vm
     image: pipseed/docker-${MOLECULE_DISTRO:-bionic}-ansible:latest
     command: ""
     volumes:

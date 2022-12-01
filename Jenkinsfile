@@ -1,9 +1,9 @@
 pipeline {
-    agent { label 'ansible-master' }
+    agent { label 'aws-sandpit' }
 
     environment {
           MS_TEAMS              = credentials("O365_URL")
-          PATH                  = "/home/auto-test/.local/bin:${env.PATH}"
+          PATH                  = "/home/ubuntu/.local/bin:${env.PATH}"
           penv                  = params.env.trim().toLowerCase()
           terraform_action      = params.terraform_action.trim().toLowerCase()
           TFPATH                = "/usr/local/bin"
@@ -23,10 +23,6 @@ pipeline {
       choices: ['dev-kvm-10', 'dev-kvm-09', 'dev-kvm-08', 'dev-kvm-07'],
       description: 'Host to deploy to......'
     )
-    }
-
-    environment {
-          PATH="/home/ubuntu/.local/bin:${env.PATH}"
     }
 
     stages {

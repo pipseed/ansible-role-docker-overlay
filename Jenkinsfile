@@ -1,9 +1,21 @@
 pipeline {
     agent { label 'ansible-master' }
+
+    environment {
+          MS_TEAMS              = credentials("O365_URL")
+          PATH                  = "/home/auto-test/.local/bin:${env.PATH}"
+          penv                  = params.env.trim().toLowerCase()
+          terraform_action      = params.terraform_action.trim().toLowerCase()
+          TFPATH                = "/usr/local/bin"
+          TFVERSION             = params.terraform_version.trim().toLowerCase()
+          AWS_ACCESS_KEY_ID     = credentials('aws-pipseed-dev')
+          AWS_SECRET_ACCESS_KEY = credentials('aws-pipseed-dev')
+          AWS_DEFAULT_REGION    = "eu-west-1"
+    }
     parameters {
     choice(
       name: 'Site',
-      choices: ['Home', 'AWS', 'Test'],
+      choices: ['AWS', 'Home', 'Test'],
       description: 'Site Location:\nHome\nAWS\nTesting'
     )
     choice(
@@ -12,27 +24,44 @@ pipeline {
       description: 'Host to deploy to......'
     )
     }
+
     environment {
-          PATH="/home/auto-test/.local/bin:${env.PATH}"
+          PATH="/home/ubuntu/.local/bin:${env.PATH}"
     }
+
     stages {
-      stage('Fetch Roles') {
+      stage("Get Roles") {
         steps {
-          sh "ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml"
+          script {
+            sh """
+            echo "Installing Ansible Galaxy Roles"
+            source /home/ubuntu/jenkins-workspace/jenkins-venv/bin/activate
+            ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml
+            """
+          }
         }
       }
       
       stage('Run Playbook') {
         steps {
-          sh "ansible-playbook provision/docker.yml -i provision/hosts -e 'chosen_hosts=${params.Host}, docker_user=seeda'"
+          script {
+            sh """
+            echo "Installing Docker Overlay"
+            ansible-playbook provision/docker.yml -i provision/hosts -e 'chosen_hosts=${params.Host}, docker_user=seeda'
+            """
+          }
         }
       }
       stage('Molecule Validation') {
         steps {
-          sh "molecule test"
+          script {
+            sh """
+            molecule test
+            """
+          }
         }
       }
-   }
+    }
    post {
      always {
         deleteDir()

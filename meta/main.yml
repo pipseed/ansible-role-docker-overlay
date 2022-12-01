@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: docker_overlay
-  namespace: docker_overlay
+  namespace: ansible_role
   author: Andy Seed
   description: Docker Engine Overlay
   company: ams1.info
@@ -10,6 +10,8 @@ galaxy_info:
   - name: Ubuntu
     versions:
       - bionic
+      - focal
+      - jammy
 
   galaxy_tags:
     - ubuntu

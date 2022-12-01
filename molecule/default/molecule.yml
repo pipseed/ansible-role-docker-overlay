@@ -10,8 +10,8 @@ lint: |
   ansible-lint
 
 platforms:
-  - name: ubuntu
-    image: pipseed/docker-jammy-ansible:latest
+  - name: Ubuntu-docker-vm
+    image: pipseed/docker-${MOLECULE_DISTRO:-bionic}-ansible:latest
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw

@@ -11,7 +11,7 @@ lint: |
 
 platforms:
   - name: ubuntu
-    image: pipseed/docker-bionic-ansible:latest
+    image: pipseed/docker-jammy-ansible:latest
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw

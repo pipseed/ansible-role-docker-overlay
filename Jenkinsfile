@@ -4,7 +4,6 @@ pipeline {
     environment {
           MS_TEAMS              = credentials("O365_URL")
           PATH                  = "/home/ubuntu/.local/bin:${env.PATH}"
-          penv                  = params.env.trim().toLowerCase()
           TFPATH                = "/usr/local/bin"
           AWS_ACCESS_KEY_ID     = credentials('aws-pipseed-dev')
           AWS_SECRET_ACCESS_KEY = credentials('aws-pipseed-dev')

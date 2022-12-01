@@ -5,9 +5,7 @@ pipeline {
           MS_TEAMS              = credentials("O365_URL")
           PATH                  = "/home/ubuntu/.local/bin:${env.PATH}"
           penv                  = params.env.trim().toLowerCase()
-          terraform_action      = params.terraform_action.trim().toLowerCase()
           TFPATH                = "/usr/local/bin"
-          TFVERSION             = params.terraform_version.trim().toLowerCase()
           AWS_ACCESS_KEY_ID     = credentials('aws-pipseed-dev')
           AWS_SECRET_ACCESS_KEY = credentials('aws-pipseed-dev')
           AWS_DEFAULT_REGION    = "eu-west-1"

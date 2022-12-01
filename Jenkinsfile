@@ -28,6 +28,8 @@ pipeline {
           script {
             sh """
             echo "Installing Ansible Galaxy Roles"
+            pwd
+            ls -ltra
             source /home/ubuntu/jenkins-workspace/jenkins-venv/bin/activate
             ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml
             """

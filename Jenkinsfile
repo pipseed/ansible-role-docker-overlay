@@ -3,7 +3,7 @@ pipeline {
 
     environment {
           MS_TEAMS              = credentials("O365_URL")
-          PATH                  = "/home/ubuntu/.local/bin:${env.PATH}"
+          PATH                  = "/home/auto-test/.local/bin:${env.PATH}"
           TFPATH                = "/usr/local/bin"
           AWS_ACCESS_KEY_ID     = credentials('aws-pipseed-dev')
           AWS_SECRET_ACCESS_KEY = credentials('aws-pipseed-dev')
@@ -12,12 +12,12 @@ pipeline {
     parameters {
     choice(
       name: 'Site',
-      choices: ['AWS', 'Home', 'Test'],
+      choices: ['Home', 'AWS', 'Test'],
       description: 'Site Location:\nHome\nAWS\nTesting'
     )
     choice(
       name: 'Host',
-      choices: ['localhost', 'dev-kvm-10', 'dev-kvm-09', 'dev-kvm-08', 'dev-kvm-07'],
+      choices: ['dev-kvm-10', 'localhost', 'dev-kvm-09', 'dev-kvm-08', 'dev-kvm-07'],
       description: 'Host to deploy to......'
     )
     }
@@ -30,7 +30,6 @@ pipeline {
             echo "Installing Ansible Galaxy Roles"
             pwd
             ls -ltra
-            source /home/ubuntu/jenkins-workspace/jenkins-venv/bin/activate
             ansible-galaxy install -p provision/roles -r provision/docker-overlay.yml
             """
           }

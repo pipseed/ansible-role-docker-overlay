@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'aws-sandpit' }
+    agent { label 'ansible-master' }
 
     environment {
           MS_TEAMS              = credentials("O365_URL")
